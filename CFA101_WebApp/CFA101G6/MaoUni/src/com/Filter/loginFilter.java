@@ -1,5 +1,4 @@
 package com.Filter;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,20 +11,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.member.model.MemberVO;
-
 //@WebFilter("/loginFilter")
 public class loginFilter implements Filter {
-
 	public loginFilter() {
-
 	}
-
 	public void destroy() {
-
 	}
-
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//doFilter每一次請求被攔截都會執行
 		//首先要做強制轉換，這樣才可以拿取session↓↓
@@ -49,13 +41,13 @@ public class loginFilter implements Filter {
 			chain.doFilter(req, res); //session不是空的話就放行
 						
 		}else{
-			res.sendRedirect(req.getContextPath() + "/front-end/home/login.jsp"); //空的話就去登入頁面
+			res.sendRedirect(req.getContextPath() + "/front-end/Home/login.jsp"); //空的話就去登入頁面
 			}
-		}
-//		}else {
-//			
-//			chain.doFilter(req, res);
-//		}	
+		
+		}else {
+			
+			chain.doFilter(req, res);
+		}	
 	}
 	public void init(FilterConfig fConfig) throws ServletException {
 	}

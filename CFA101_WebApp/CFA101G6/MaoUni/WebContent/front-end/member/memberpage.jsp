@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/sweetalert2.css"> 
 	<script src="<%= request.getContextPath() %>/resources/js/sweetalert2.js"></script>
 	
-<title>Insert title here</title>
+<title>會員中心</title>
 
 
 <style>
