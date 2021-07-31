@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF8"%>
 <%@ page import="com.member.model.*"%>
+<%@ page import="com.pet.model.*"%>
 
 <%
-  MemberVO memberVO = (MemberVO) request.getAttribute("memberVO"); 
+  MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+	PetVO petVO = (PetVO) request.getAttribute("petVO"); 
 %>    
+ 
  
 <!DOCTYPE html>
 <html>
@@ -25,7 +28,7 @@
 	<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/sweetalert2.css"> 
 	<script src="<%= request.getContextPath() %>/resources/js/sweetalert2.js"></script>
 
-<title>Insert title here</title>
+<title>毛孩資料</title>
 
 
 <style>
@@ -538,7 +541,7 @@ margin-left: 5%;
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 50px 60px -50px #563F2E;
-        z-index: -1;
+/*         z-index: -1; */
     
     }
     
@@ -548,7 +551,7 @@ margin-left: 5%;
         height: 400px;
         border-radius: 3px;
         margin-right: 30px;
-        z-index: -1;
+/*         z-index: -1; */
     }
     
     div.membercontainer div.switchform h2{
@@ -613,15 +616,15 @@ margin-left: 5%;
         background-color:#FFF7E8;
     }
     
-    div.image img{
+     div.image img{
     
-    z-index: 1;
-    width: 290px;
-    border-radius: 5px;
-    margin-left: 53%;
+     z-index: 1; 
+    width: 290px; 
+     border-radius: 5px; 
+   margin-left: 53%; 
     margin-bottom:200px;
 
-    }
+     }
     
     .memberswitch{
         display: flex;
@@ -879,8 +882,8 @@ background-color: #fff;
 	
 	    <div class="icontrue" style="margin: 10px 10px 0px 0px;">
 		
-		  <a href="<%=request.getContextPath()%>/front-end/member/memberpage.jsp" class="iconbth"><i class="fas fa-user fa-1x" style="color:white;font-size:25px;"></i></a>
-		  <a href="<%=request.getContextPath()%>/front-end/chatbox/chatbox.jsp" class="iconbth"><i class="fa fa-comments fa-1x" style="color:white;font-size:28px;padding:2px;margin-top:-4px;"></i></a>
+<a href="<%=request.getContextPath()%>/front-end/member/memberpage.jsp" class="iconbth"><i class="fas fa-user fa-1x" style="color:white;font-size:25px;"></i></a>
+      <a href="<%=request.getContextPath()%>/front-end/chatbox/chatbox.jsp" class="iconbth"><i class="fa fa-comments fa-1x" style="color:white;font-size:30px;margin-top:-4px;"></i></a>
 		  <a href="#" class="iconbth"><i class="fas fa-envelope fa-1x" style="color:white;font-size:25px;margin-right:-4px;"></i></a>
 	    
 	      <div class="dropdown ml-auto">
@@ -935,17 +938,17 @@ background-color: #fff;
 			</div>
 		</div>
 		
-		<div class="shopbody">
-		   <nav style="margin-bottom:-15px;margin-left:15px;">
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/home/HomePage.jsp" style="font-size:15px;">首　頁</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/shop/shopping_home.jsp" style="font-size:15px;">有你來買</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/forumPost/forumPost_home.jsp" style="font-size:15px;">有你來講</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/member/grooming_home.jsp" style="font-size:15px;">到府美容</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp" style="font-size:15px;">浪浪找家</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/article/listAllArt_f.jsp" style="font-size:15px;">知識站</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/announcemet/listAllAnnf.jsp" style="font-size:15px;">公告</a></p>
-			 	</nav>
-		</div>
+<div class="shopbody">
+    <nav style="margin-bottom:-15px;margin-left:15px;">
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/home/HomePage.jsp" style="font-size:15px;">首　頁</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/shop/shopping_home.jsp" style="font-size:15px;">有你來買</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/forumPost/forumPost_home.jsp" style="font-size:15px;">有你來講</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/member/grooming_home.jsp" style="font-size:15px;">到府美容</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp" style="font-size:15px;">浪浪找家</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/article/listAllArt_f.jsp" style="font-size:15px;">知識站</a></p>
+          <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/announcemet/listAllAnnf.jsp" style="font-size:15px;">公告</a></p>
+     </nav>
+   </div>
 		<div class="Shopping-ul"></div>
 	    
 	</header>
@@ -972,11 +975,21 @@ background-color: #fff;
  <div class="memberswitch">
 <!-- 以下三個連結之後都要換成getone去抓當下使用者的資訊 -->
 
+<div class="memberswitch col-2">
         <a href="<%=request.getContextPath()%>/front-end/member/memberpage.jsp">會員資料</a>
         <a href="<%=request.getContextPath()%>/front-end/member/petpage.jsp">毛孩資料</a>
         <a href="#">訂單紀錄</a>
         <a href="<%=request.getContextPath()%>/front-end/member/grooming_appointment_manage.jsp">預約紀錄</a>
-       	<a href="/CFA101G6/member/member.do?action=OutUser">登出</a>
+        <c:if test="${memberVO.memPosition == '1'}">
+         <a href="<%=request.getContextPath()%>/front-end/groomer/groomer_infoEdit.jsp">美容專區</a>
+        </c:if>
+        <c:if test="${memberVO.memPosition == '0'}">
+         <a href="<%=request.getContextPath()%>/front-end/groomer/groomer_application.jsp">加入美容</a>
+        </c:if>
+        
+        
+        <a href="<%=request.getContextPath()%>/member/member.do?action=OutUser">登出</a>
+</div>
      
 </div>
 
@@ -989,25 +1002,29 @@ background-color: #fff;
             <div class="membertext">
                 <table>
              
+            <h4>毛孩編號 <%=petVO.getPetId()%></h4>
+             
                 <tr>
-                <td>莉娜</td>
+                <td><%=petVO.getPetName()%></td>
                 </tr>
             
                 <tr>
-                <td>貓</td>   
+                <td><%=petVO.getPetSort()%></td>   
                 </tr>
             
                 <tr>
-                <td>英國短毛貓</td>
+                <td><%=petVO.getPetVarId()%></td>
             </tr>
-                <td>母</td>   
+			<tr>            
+                <td><%=petVO.getPetGender()%></td>   
             </tr>
+
             <tr>
-                <td>3歲</td>   
+                <td><%=petVO.getPetAge()%></td>   
                 </tr>
              
                 <tr>
-                <td>健康</td>     
+                <td><%=petVO.getPetSurvive()%></td>     
                 </tr>
 
 
@@ -1015,12 +1032,19 @@ background-color: #fff;
             </table>
         </div>
 </div>
-            <button class="bt" type="submit">Update</button>
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pet/pet.do" name="form1">
+<input type="hidden" name="action" value="Update">
+<input type="hidden" name="petId" value="${param.petId}">
+<input class="bt" type="submit" value="GET_ONE_STMT"></FORM>								
+															
+															
+				
+            
 </div>
 
-<div class="image">
-        <img src="${pageContext.request.contextPath}/resources/images/milada.jpg" width="300" height="399.8"/> 
-</div>
+<!-- <div class="image"> -->
+<%--         <img src="${pageContext.request.contextPath}/resources/images/milada.jpg" width="300" height="399.8"/>  --%>
+<!-- </div> -->
 
 
 	

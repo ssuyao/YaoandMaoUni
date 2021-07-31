@@ -119,27 +119,27 @@ margin-left: 200px;
 
    <!-- 以下 >>隱藏式菜單_內容 -->
      <header>
-         <span class="toggle-button">
+         <span class="toggle-button" style="margin-left:-5px;margin-top:-7px;">
              <div class="menu-bar menu-bar-top"></div>
              <div class="menu-bar menu-bar-middle"></div>
              <div class="menu-bar menu-bar-bottom"></div>
          </span>
          <div class="menu-wrap">
-             <div class="menu-sidebar" style="margin-top:46px;">
+             <div class="menu-sidebar" style="margin-top:30px;">
                  <ul class="menu">
-                     <li><a href="https://tw.yahoo.com/">MaoUni_後台首頁</a></li>
-                     <li><a href="<%=request.getContextPath()%>/back-end/Member/listAllMember.jsp">會員資料管理</a></li>
-                     <li><a href="#">到府美容管理</a></li>
-                     <li><a href="<%=request.getContextPath()%>/back-end/Obuy/NewObuyAll.jsp">商城管理</a></li>
+                     <li><a href="<%=request.getContextPath()%>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
+                     <li><a href="#">商城管理</a></li>
+                     <li><a href="#">商城客服管理</a></li>
                      <li><a href="#">討論區管理</a></li>
                      <li><a href="#">浪浪找家管理</a></li>
-                     <li><a href="#">友善店家管理</a></li>
                      <li><a href="#">知識站管理</a></li>
                      <li><a href="#">公告管理</a></li>
+                     <li><a href="#">美容師管理</a></li>
+                     <li><a href="#">美容預約檢舉管理</a></li>
                  </ul>
              </div>
          </div>
-     </header> 
+     </header>
  <!-- 以上 >>隱藏式菜單_內容 --> 
  
  
@@ -148,8 +148,8 @@ margin-left: 200px;
              <span style="color: #ffffff;">會員更新</span> Update Member</strong></h1>
     </div>
 
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/member.do" name="form1">
-<table>
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/member.do" name="update">
+<table class="update">
 	
 
             <h3>會員編號:<%=memberVO.getMemId()%></h3>
@@ -157,60 +157,61 @@ margin-left: 200px;
    
 
             <h3>會員姓名:<%=memberVO.getMemName()%></h3>
+            
 	<tr>
 		<td>信箱:</td>
-		<td><input type="TEXT" name="memEmail" size="45" value="${param.memEmail}"/></td>
+		<td><input type="TEXT" name="memEmail" size="45" value="<%=memberVO.getMemEmail()%>"/></td>
 	</tr>
+
 	<tr>
 		<td>密碼:</td>
-		<td><input type="TEXT" name="memPassword" size="45"	value="${param.memPassword}"/></td>
+		<td><input type="TEXT" name="memPassword" size="45"	value="<%=memberVO.getMemPassword()%>"/></td>
 	</tr>
 	<tr>
 	<tr>
 		<td>身分證:</td>
-		<td><input type="TEXT" name="memIdenity" size="45"	value="${param.memIdenity}"/></td>
+		<td><input type="TEXT" name="memIdenity" size="10"	value="<%=memberVO.getMemIdenity()%>"/></td>
 	</tr>
 	<tr>
 		<td>性別:</td>
-		<td><input type="TEXT" name="memGender" size=""	value="${param.memGender}"/></td>
+		<select size="1" name="memGender">
+		<option value="女">女</option>
+		<option value="男">男</option>
+		</select>
 	</tr>
+
 	<tr>
 		<td>電話</td>
-		<td><input type="TEXT" name="memPh" size="" value="${param.memPh}"/></td>
+		<td><input type="TEXT" name="memPh" size="10" value="<%=memberVO.getMemPh()%>"/></td>
 	</tr>
 	
 		<tr>
 		<td>地址</td>
-		<td><input type="TEXT" name="memAddres" size="" value="${param.memAddres}"/></td>
+		<td><input type="TEXT" name="memAddres" size="" value="<%=memberVO.getMemAddres()%>"/></td>
 	</tr>
 	
 		<tr>
 		<td>生日</td>
-		<td><input type="TEXT" name="memBirthday" size="" value="${param.memBirthday}"/></td>
+		<td><input type="TEXT" name="memBirthday" size="" value="<%=memberVO.getMemBirthday()%>"/></td>
 	</tr>
 	
-	<tr>
-		<td>身分</td>
-		<td><input type="TEXT" name="memPosition" size="" value="${param.memPosition}"/></td>
-	</tr>
-
-	<tr>
-		<td>美容預約完成次數</td>
-		<td><input type="TEXT" name="memReserve" size="" value="${param.memReserve}"/></td>
+		<tr>
+		<td>身分:</td>
+		<select size="1" name="memPosition">
+		<option value="0">會員</option>
+		<option value="1">美容師</option>
+		</select>
 	</tr>
 	
-
+		<tr>
+		<td>會員狀態:</td>
+		<select size="1" name="memSurvive">
+		<option value="0">審核中</option>
+		<option value="1">一般</option>
+		<option value="2">停權</option>
+		</select>
+	</tr>
 		
-   <jsp:useBean id="memberSvc" scope="page" class="com.member.model.MemberService" /> 
-
-   			<td>會員狀態</td>
-	         <select size="1" name="memSurvive}">
-			<c:forEach var="memberVO" items="${memberSvc.all}">
-				<option value="審核中">${memberVO.memSurvive}</option>
-				<option value="一般">${memberVO.memSurvive}</option>
-				<option value="停權">${memberVO.memSurvive}</option>
-			</c:forEach>
-	    </select>		
 
 </table>
 <br>

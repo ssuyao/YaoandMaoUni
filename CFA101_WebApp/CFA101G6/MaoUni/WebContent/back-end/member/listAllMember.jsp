@@ -107,31 +107,28 @@ input.update:hover {
 <body style="height: auto;">
 	<!-- 步驟二 -->
 	<!-- 以下 >>隱藏式菜單_內容 -->
-	<header>
-		<span class="toggle-button">
-			<div class="menu-bar menu-bar-top"></div>
-			<div class="menu-bar menu-bar-middle"></div>
-			<div class="menu-bar menu-bar-bottom"></div>
-		</span>
-		<div class="menu-wrap">
-			<div class="menu-sidebar" style="margin-top: 46px;">
-				<ul class="menu">
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/back-end/obuy/obuyAll.jsp">商品訂單管理</a></li>
-					<li><a href="#">商城管理</a></li>
-					<li><a href="#">商城客服管理</a></li>
-					<li><a href="#">討論區管理</a></li>
-					<li><a href="#">浪浪找家管理</a></li>
-					<li><a href="#">知識站管理</a></li>
-					<li><a href="#">公告管理</a></li>
-					<li><a href="#">美容師管理</a></li>
-					<li><a href="#">美容預約檢舉管理</a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
+     <header>
+         <span class="toggle-button" style="margin-left:-5px;margin-top:-7px;">
+             <div class="menu-bar menu-bar-top"></div>
+             <div class="menu-bar menu-bar-middle"></div>
+             <div class="menu-bar menu-bar-bottom"></div>
+         </span>
+         <div class="menu-wrap">
+             <div class="menu-sidebar" style="margin-top:30px;">
+                 <ul class="menu">
+                     <li><a href="<%=request.getContextPath()%>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
+                     <li><a href="#">商城管理</a></li>
+                     <li><a href="#">商城客服管理</a></li>
+                     <li><a href="#">討論區管理</a></li>
+                     <li><a href="#">浪浪找家管理</a></li>
+                     <li><a href="#">知識站管理</a></li>
+                     <li><a href="#">公告管理</a></li>
+                     <li><a href="#">美容師管理</a></li>
+                     <li><a href="#">美容預約檢舉管理</a></li>
+                 </ul>
+             </div>
+         </div>
+     </header>
 	<!-- 以上 >>隱藏式菜單_內容 -->
 
 

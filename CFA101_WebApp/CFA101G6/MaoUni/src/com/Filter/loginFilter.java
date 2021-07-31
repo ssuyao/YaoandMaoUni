@@ -36,19 +36,16 @@ public class loginFilter implements Filter {
 		Object memberVO = session.getAttribute("memberVO"); 
 //		這邊要抓取上次登入的servlet存入的東西，不然沒有東西可驗
 
-		if(memberVO != null) {
+		if(memberVO == null) {
+			res.sendRedirect(req.getContextPath() + "/front-end/home/login.jsp"); //空的話就去登入頁面	
 			
-			chain.doFilter(req, res); //session不是空的話就放行
 						
 		}else{
-			res.sendRedirect(req.getContextPath() + "/front-end/Home/login.jsp"); //空的話就去登入頁面
+			chain.doFilter(req, res); //session不是空的話就放行
 			}
-		
-		}else {
-			
-			chain.doFilter(req, res);
 		}	
 	}
-	public void init(FilterConfig fConfig) throws ServletException {
+		public void init(FilterConfig fConfig) throws ServletException {
+		}
 	}
-}		
+
