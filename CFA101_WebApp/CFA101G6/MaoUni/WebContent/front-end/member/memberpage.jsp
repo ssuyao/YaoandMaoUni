@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF8"%>
 <%@ page import="com.member.model.*"%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
   MemberVO memberVO = (MemberVO) request.getAttribute("memberVO"); 
 %>    
+
+<%
+	MemberService memSvc = new MemberService();
+	List<MemberVO> list = memSvc.getAll();
+	pageContext.setAttribute("list", list);
+%>
+
  
 <!DOCTYPE html>
 <html>
@@ -58,7 +67,7 @@ time, mark, audio, video {
 /* HTML5 display-role reset for older browsers */
 
 article, aside, details, figcaption, figure, header, hgroup, menu, nav, section {
-    display: block;
+display: block;
 }
 
 
@@ -614,7 +623,6 @@ margin-left: 5%;
     
     div.image img{
     
-    z-index: 1;
     width: 290px;
     border-radius: 5px;
     margin-left: 53%;
@@ -970,7 +978,7 @@ background-color: #fff;
 		
  <div class="memberswitch">
         <a href="<%=request.getContextPath()%>/front-end/member/memberpage.jsp">會員資料</a>
-        <a href="<%=request.getContextPath()%>/front-end/member/petpage.jsp">毛孩資料</a>
+        <a href="/MaoUni/pet/pet.do?action=findByMemId">毛孩資料</a>
         <a href="#">訂單紀錄</a>
         <a href="<%=request.getContextPath()%>/front-end/member/grooming_appointment_manage.jsp">預約紀錄</a>
 
@@ -985,9 +993,8 @@ background-color: #fff;
         
         <a href="/MaoUni/member/member.do?action=OutUser">登出</a>
 </div>
-
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/member.do" name="memberpage">
     <div class="membercontainer">
-    <form class="form" id="form">
     <div class="switchform">
 
             <h2>會員資料</h2>
@@ -996,39 +1003,54 @@ background-color: #fff;
                 <table>
              
                 <tr>
-                <td>快樂肥宅水</td>
-                </tr>
+                <td>${memberVO.memName}</td>
+               </tr>
             
                 <tr>
-                <td>hk1345@hotmail.com</td>   
+                <td>${memberVO.memEmail}</td>   
                 </tr>
-            
-                <tr>
-                <td>女性</td>
-            </tr>
-                <td>1999-01-02</td>   
-            </tr>
-            <tr>
-                <td>A1113982337</td>   
+	
+				 <tr>
+                <td>${memberVO.memGender}</td>   
+                </tr>
+	
+ 				 <tr>    
+                <td>${memberVO.memBirthday}</td>   
+            	</tr>
+            	
+            	
+            	<tr>
+                <td>${memberVO.memIdenity}</td>   
                 </tr>
              
                 <tr>
-                <td>0912907998</td>     
+                <td>${memberVO.memPh}</td>     
                 </tr>
+                
                 <tr>
-                <td>桃園市平鎮區忠孝路106號</td>    
+                <td>${memberVO.memAddres}</td>    
                 </tr>
-            </div>
             </table>
         </div>
+             
 </div>
-            <button class="bt" type="submit">Update</button>
-            <button class="bt" type="submit">Password</button>
-</div>
+</FORM>
 
-<!-- <div class="image"> -->
-<%--   <img src="${pageContext.request.contextPath}/resources/images/valeriia.jpg" width="300" height="399.8"/>  --%>
-<!-- </div> -->
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/member.do">
+<input class=bt type="submit"  value="更改密">
+<input type="hidden" name="memId" value="${memberVO.memId}"> 
+<input type="hidden" name="action" value="updatePassword">
+</FORM>            
+   
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/member.do">
+<input class=bt type="submit" value="編輯資料">
+<input type="hidden" name="memId" value="${memberVO.memId}"> 
+<input type="hidden" name="action" value="getOne_For_Update">
+</FORM>     
+</div>
+<div class="image">
+  <img src="${pageContext.request.contextPath}/resources/images/valeriia.jpg" width="300" height="399.8"/> 
+</div>
 
 
 	

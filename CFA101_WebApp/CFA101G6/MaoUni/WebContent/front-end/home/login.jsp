@@ -160,7 +160,7 @@ visibility: hidden;
             <input type="text" class="memEmail" placeholder="Email" name="memEmail" id="memEmail" required>
             <input type="password" placeholder="Password" name="memPassword" id="memPassword" required>
             <button type="submit" name="action" value="findByUseremailAndpassword">LOGIN</button>
-            <button class="bt" type="button" onclick="location.href='<%=request.getContextPath()%>/front-end/member/Signup.jsp'">SIGNUP</button>
+            <button class="bt" type="button" onclick="location.href='<%=request.getContextPath()%>/front-end/member/signup.jsp'">SIGNUP</button>
         </form>
         </div>
         <div class="image">

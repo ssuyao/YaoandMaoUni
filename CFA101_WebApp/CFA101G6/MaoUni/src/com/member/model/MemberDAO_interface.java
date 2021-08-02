@@ -17,10 +17,10 @@ public interface MemberDAO_interface {
     public MemberVO upemail(String memEmail);
     public String checkemail(String memEmail);//查詢資料是否有人註冊了
     public void updatePosition(Integer memId, Connection con);// Esther 新增
+	public void updatePassword(MemberVO memberVO);//會員更新密碼
 
 
 }
 
 
-//  public String updatepassword(String memPassword); //會員前台更新密碼
 //	public Integer checkmemPosition(Integer memPosition); //尋找身分

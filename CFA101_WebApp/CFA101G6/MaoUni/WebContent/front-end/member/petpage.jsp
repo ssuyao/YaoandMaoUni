@@ -2,6 +2,7 @@
     pageEncoding="UTF8"%>
 <%@ page import="com.member.model.*"%>
 <%@ page import="com.pet.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
   MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
@@ -972,25 +973,25 @@ background-color: #fff;
 	<!--滑動top請抓以上為止-->		
 		<!-- 以下這個範圍只是為了拉長版面顯示可實作的範圍,可直接在這邊開始做你的版面摟! -->
 		
- <div class="memberswitch">
 <!-- 以下三個連結之後都要換成getone去抓當下使用者的資訊 -->
 
-<div class="memberswitch col-2">
+ <div class="memberswitch">
         <a href="<%=request.getContextPath()%>/front-end/member/memberpage.jsp">會員資料</a>
-        <a href="<%=request.getContextPath()%>/front-end/member/petpage.jsp">毛孩資料</a>
+        <a href="/MaoUni/pet/pet.do?action=findByMemId">毛孩資料</a>
         <a href="#">訂單紀錄</a>
         <a href="<%=request.getContextPath()%>/front-end/member/grooming_appointment_manage.jsp">預約紀錄</a>
-        <c:if test="${memberVO.memPosition == '1'}">
+
+		<c:if test="${memberVO.memPosition == '1'}">
          <a href="<%=request.getContextPath()%>/front-end/groomer/groomer_infoEdit.jsp">美容專區</a>
         </c:if>
+        
         <c:if test="${memberVO.memPosition == '0'}">
-         <a href="<%=request.getContextPath()%>/front-end/groomer/groomer_application.jsp">加入美容</a>
+        <a href="<%=request.getContextPath()%>/front-end/groomer/groomer_application.jsp">加入美容</a>
         </c:if>
         
         
-        <a href="<%=request.getContextPath()%>/member/member.do?action=OutUser">登出</a>
+        <a href="/MaoUni/member/member.do?action=OutUser">登出</a>
 </div>
-     
 </div>
 
     <div class="membercontainer">
@@ -1001,30 +1002,28 @@ background-color: #fff;
             
             <div class="membertext">
                 <table>
-             
-            <h4>毛孩編號 <%=petVO.getPetId()%></h4>
-             
+          
                 <tr>
-                <td><%=petVO.getPetName()%></td>
+                <td>${petVO.petName}</td>
                 </tr>
             
                 <tr>
-                <td><%=petVO.getPetSort()%></td>   
+                <td>${petVO.petSort}</td>   
                 </tr>
             
                 <tr>
-                <td><%=petVO.getPetVarId()%></td>
+                <td>${petVO.petVarId}</td>
             </tr>
 			<tr>            
-                <td><%=petVO.getPetGender()%></td>   
+                <td>${petVO.petGender}</td>   
             </tr>
 
             <tr>
-                <td><%=petVO.getPetAge()%></td>   
+                <td>${petVO.petAge}</td>   
                 </tr>
              
                 <tr>
-                <td><%=petVO.getPetSurvive()%></td>     
+                <td>${petVO.petSurvive}</td>     
                 </tr>
 
 

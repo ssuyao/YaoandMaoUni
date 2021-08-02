@@ -87,6 +87,13 @@ public class MemberService {
 		return null;
 	}
 
+	//更新會員密碼
+	public void updatePassword(String memEmail,String memPassword) {//前台更新密碼
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMemEmail(memEmail);
+		memberVO.setMemPassword(memPassword);
+		dao.updatePassword(memberVO);
+	}	
 	
 
 	}

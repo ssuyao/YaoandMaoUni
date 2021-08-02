@@ -106,8 +106,29 @@ public class MemberServlet extends HttpServlet {
 			}
 		}		
 		
-		
-		
+		if ("updatePassword".equals(action)) { // 前台會員更新密碼
+			
+
+			HttpSession session =req.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+			
+			if(memberVO != null) {
+			try {
+				String memPassword = req.getParameter("memPassword");
+				String memEmail2 = memberVO.getMemEmail();
+				
+				MemberService memSvc = new MemberService();
+				memSvc.updatePassword(memEmail2, memPassword);
+
+				String url = "/front-end/member/memberpage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
+	}		
 		if ("update".equals(action)) { // 來自請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -249,7 +270,7 @@ public class MemberServlet extends HttpServlet {
 			if (memberVO != null) {// 先做簡單的對比找出有的資料
 				String url = req.getContextPath() + "/front-end/home/HomePage.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url);
-
+				
 				session.setAttribute("memEmail", memEmail); // 確認有這個帳號後存入session中，以備登出用
 				session.setAttribute("memberVO", memberVO);
 
@@ -261,8 +282,7 @@ public class MemberServlet extends HttpServlet {
 //				}
 				
 				res.sendRedirect(url);
-				// session.setAttributec會在一個時間點保留存的值
-//				successView.forward(req, res);	
+
 
 			} else {
 				errorMsgs.add("帳號密碼有誤，請重新輸入");
@@ -289,9 +309,10 @@ public class MemberServlet extends HttpServlet {
 			// session.removeAttribute();用於清空指定屬性的session，它的,session還是原來的session
 			// session.invalidate();直接清空當前session的所有相關資訊，就摧毀
 		}
-		System.out.println(action);
+
+		
 		if ("signup".equals(action)) {
-System.out.println("ccccccccccccccccc");
+
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -303,15 +324,13 @@ System.out.println("ccccccccccccccccc");
 			Integer memPh = new Integer(req.getParameter("memPh").trim()); // 因為前端輸入文字時都是String，因此需要轉型
 			String memAddres = req.getParameter("memAddres").trim();
 			Date memBirthday = java.sql.Date.valueOf(req.getParameter("memBirthday")); // Date要用這個方式輸入進去
-
+		
 			try {
 				MemberService memSvc = new MemberService(); // 呼叫serverc方法
 				memSvc.signup(memName, memEmail, memPassword, memIdenity, memGender, memPh, memAddres, memBirthday);
 
-//		/***************************3.新增完成,準備轉交(Send the Success view)***********/
-//				String url = req.getContextPath() + "/front-end/Home/HomePage.jsp";
+
 				res.sendRedirect(req.getContextPath() + "/front-end/home/HomePage.jsp");
-//				successView.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
