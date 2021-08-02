@@ -110,7 +110,6 @@
 	input.update:hover{
 		background-color: #e8c497;
 	}
-
 </style>
 </head>
 
@@ -123,18 +122,17 @@
              <div class="menu-bar menu-bar-bottom"></div>
          </span>
          <div class="menu-wrap">
-             <div class="menu-sidebar" style="margin-top:20px;">
+             <div class="menu-sidebar" style="margin-top:30px;">
                  <ul class="menu">
-                     <li><a href="#">會員資料管理</a></li>
-                     <li><a href="#">商品訂單管理</a></li>
-                     <li><a href="ItemHomePage.jsp">商城管理</a></li>
-                     <li><a href="#">商城客服管理</a></li>
-                     <li><a href="#">討論區管理</a></li>
-                     <li><a href="#">浪浪找家管理</a></li>
-                     <li><a href="#">知識站管理</a></li>
-                     <li><a href="#">公告管理</a></li>
-                     <li><a href="#">美容師管理</a></li>
-                     <li><a href="#">美容預約檢舉管理</a></li>
+                    <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/message/message_home.jsp">商城客服管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/grooming_report.jsp">美容預約檢舉管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/staff/allStaff.jsp">後台管理</a></li>
                  </ul>
              </div>
          </div>
@@ -149,7 +147,7 @@
             	 <!-- 以下範圍為最上方包著商城管理以及右方後台人員的區塊, -->
                 <nav class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top">
                     <div class="container-fluid" style="margin-top:23px;margin-left:-6px;">
-<!--請看這行最右邊-->  <a class="btsp" href="ItemHomePage.jsp">商城管理</a>  <!-- 這行是商城管理的標題，可以自行設定，還有href可以自行設定跳轉的頁面 -->
+<!--請看這行最右邊-->  <a class="btsp" href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a>  <!-- 這行是商城管理的標題，可以自行設定，還有href可以自行設定跳轉的頁面 -->
                        	 <ul class="nav navbar-nav flex-nowrap ml-auto" style="margin-top:-10px;">                         
                            
                             <li class="nav-item dropdown no-arrow" style="margin-top:10px">
@@ -181,17 +179,68 @@
 		            <p class="allitemtitle" style="margin: 1px;font-size: 20px;">所有商品資料</p>
 		        </div>
 			        <div class="card-body" style="height: auto;">
-			            <div class="row">
-			                <div class="col-md-6 text-nowrap">
-			                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable" style="margin-left:4px;margin-top:5px;"><label>Show&nbsp;
-			                    <select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label>
-			                    <button onclick="exportTableToExcel('dataTable')" class="btn" type="button" style="margin-left: 75px;">匯出EXCEL</button>
-			                    </div>
-			                </div>
-			                <div class="col-md-6">
-			                    <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" style="margin-top:5px;maring-left:-22px;width:200px;"></label></div>
-			                </div>
-			            </div>
+		            <div class="row">
+		                <div class="col-md-6 text-nowrap">
+		                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable" style="margin-left:10px;margin-top:5px;"><label>Show&nbsp;
+		                    <select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label>	                    
+		                    </div>
+		                </div>
+		                <div class="col-md-6" style="display:flex;">
+		                	<div class="excelbutton">
+		                	<button onclick="exportTableToExcel('dataTable')" class="btn" type="button" style="margin-left: 290px;">匯出EXCEL</button>
+		                    </div>
+		                    
+		                    <div class="itemquerybutton" style="margin-left:20px;">
+		                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/Item/ItemServlet">
+		                    <button type="button" class="btn" id="btnstyleforitemquery"data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="">商品查詢</button>
+							
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">查詢</h5>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							        
+							          <div class="mb-3">
+							            <label for="message-text" class="col-form-label">以商品編號查詢</label>
+							            <input type="text" class="form-control" id="message-text" name="ITEM_ID" placeholder="請輸入商品編號">
+							          </div>
+							          <div class="mb-3">
+							            <label for="message-text" class="col-form-label">以商品名稱查詢</label>
+							            <input type="text" class="form-control" id="message-text" name="ITEM_NAME" placeholder="請輸入商品名稱">
+							          </div>
+							          <div class="mb-3">
+							            <label for="droptext" class="col-form-label">以商品類別查詢</label>
+							            <select size="1" name="ITEMT_ID" class="form-control" id="droptext"> 
+									          <option value="" selected>請選擇商品類別</option> 
+									         <c:forEach var="itemTypeVO" items="${itemTypeSvc.all}" >  
+									          <option value="${itemTypeVO.itemtId}">${itemTypeVO.itemtName}</option> 
+								         	 </c:forEach>    
+										</select> 
+									  </div>
+									  <div class="mb-3">
+							            <label for="droptext" class="col-form-label">以寵物類別查詢</label>
+										<select size="1" name="ITEM_PET_TYPE" class="form-control" id="droptext">
+											<option value="" selected>請選擇寵物類別</option>
+											<option value="<%= (itemVO==null)? "貓" : itemVO.getItemPetType()%>">貓
+											<option value="<%= (itemVO==null)? "狗" : itemVO.getItemPetType()%>">狗					
+										</select>
+							          </div>
+							        
+							      </div>
+							      <div class="modal-footer">
+							        <input class="sontrue" type="submit" value="送出" style="margin-left:275px;margin-top:20px;">
+							        <input type="hidden" name="action" value="listItem_ByCompositeQuery">
+							      </div>
+							    </div>
+							  </div>
+							</div>
+		                    </FORM>	
+		                    </div>
+		                </div>
+		            </div>
 			            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
 
 							<table class="table my-0" id="dataTable">
@@ -262,7 +311,10 @@
 				</div>
         </div> <!-- class="row"的結尾標籤-->
 	</div> <!-- Class="Wrapper"的結尾標籤 -->
-
+	<!-- 以下為modal用--> 
+	<script src="<%=request.getContextPath()%>/resources/js/itemquery.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.bundle.min.js"></script>
+	<!-- 以上為modal用--> 
 
 
     <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>

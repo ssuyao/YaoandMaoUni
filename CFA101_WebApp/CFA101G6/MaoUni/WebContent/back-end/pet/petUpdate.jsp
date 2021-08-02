@@ -27,7 +27,6 @@
   padding: 350px;
  
 }
-
  .get_taital{
 	text-align: center;
   position: absolute;
@@ -37,7 +36,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
  }
-
    .email_box{
     margin-top: 150px;
     max-width:900px;
@@ -49,9 +47,7 @@
       padding: 50px 20px;
       opacity: 0.80;
       text-align:center;
-
   }
-
    .form-group {
         margin-bottom: 2rem;
    }
@@ -59,7 +55,6 @@
     margin-left: 200px;
     font-size: 22px;
    }
-
    .email-bt {
     max-width:900px;
      margin-left: 200px;
@@ -70,9 +65,7 @@
     font-size: 22px;  
     padding: 20px;
     margin-top: 20px;
-
    }
-
    .massage-bt {
     max-width:900px;
      margin-left: 200px;
@@ -83,13 +76,9 @@
     font-size: 22px;
     padding: 70px 20px 10px 20px;
   }
-
  .input{
-
   margin-left: 200px;
-
  }
-
 button.main_bt {
   background-color: white; 
     color: black; 
@@ -102,11 +91,9 @@ button.main_bt {
    border-radius: 25px;
     
 }
-
 button.main_bt:hover{
   background-color: #D2AD86; /* Green */
     color: white;
-
 }
 .erroeMasgs{
 margin-left: 200px;
@@ -127,15 +114,15 @@ margin-left: 200px;
          <div class="menu-wrap">
              <div class="menu-sidebar" style="margin-top:30px;">
                  <ul class="menu">
-                     <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/message/addMessage.jsp">商城客服管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/forumpost/forumPostHomePage.jsp">討論區管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/groomer/grooming_report.jsp">美容預約檢舉管理</a></li>
+                    <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/message/message_home.jsp">商城客服管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/grooming_report.jsp">美容預約檢舉管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/staff/allStaff.jsp">後台管理</a></li>
                  </ul>
              </div>
          </div>

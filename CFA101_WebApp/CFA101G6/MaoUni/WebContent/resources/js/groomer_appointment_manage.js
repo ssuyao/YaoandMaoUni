@@ -1,14 +1,14 @@
 
 //WebSocket
 
-let MyPoint = "/ApmWS/1";
+let MyPoint = `/ApmWS/${groomerId}`;
 let host = window.location.host;
 let path = window.location.pathname;
 let webCtx = path.substring(0, path.indexOf('/', 1));
 let endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
 console.log(endPointURL)
 
-let self = "1";
+let self = groomerId;
 let webSocket;
 
 	window.onload = function(){
@@ -150,21 +150,19 @@ let memId = "";
 let stime = 0;
 let etime = 0;
 let apmDate = "";
-let groomerId = "";
-		
+
 	$(document).on("click", ".showList", function(e){
 		if(e.target.classList.contains("detail")){
 			memId = "";
 			stime = 0;
 			etime = 0;
 			apmDate = "";
-			groomerId = "";
 			
 			memId = parseInt(e.target.dataset.memid);
 			stime = parseInt(e.target.dataset.stime);
 			etime = parseInt(e.target.dataset.etime);
 			apmDate += e.target.dataset.apmdate;
-			groomerId += e.target.dataset.groomerid;
+
 			$(".svcList").show();
 			$(".targetId").text(`# ${e.target.id}`)
 			$.ajax({
@@ -414,7 +412,7 @@ function init() {
                         fillOpacity: 0.35, // 圓形裡，填滿顏色的透明度
                         map: map,
                         center: pos, // 中心點
-                        radius: 3000 // 半徑
+                        radius: grange * 1000 // 半徑
                     });
                 })
             } else {
@@ -431,7 +429,7 @@ function init() {
 				url: "/MaoUni/appointment.do",
 				type: "GET",
 				data:{			
-					groomerId: "1",
+					groomerId: groomerId,
 					action: "getAll"
 				},
 				success: function(data){
@@ -452,7 +450,6 @@ function init() {
 				console.log(i);
 			}
 			markersArray.length = 0;
-			console.log(markersArray + "222222")
 		}
 		
         function generateMarkers() {

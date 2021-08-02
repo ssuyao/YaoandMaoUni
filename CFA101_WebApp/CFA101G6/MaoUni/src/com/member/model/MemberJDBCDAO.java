@@ -26,9 +26,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String CHECK = "SELECT * FROM MEMBER where MEM_EMAIL = ?";
 	private static final String UPDATE_POSITION = "UPDATE MEMBER set MEM_POSITION=?  where MEM_ID = ?";
 	private static final String UPDATE_PASSWORD = "UPDATE MEMBER SET MEM_PASSWORD = ? WHERE MEM_EMAIL = ?";
-	
-	
-	
+
 	@Override
 	public void updatePassword(MemberVO memberVO) {
 		Connection con = null;
@@ -39,7 +37,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_PASSWORD);
-
 
 			pstmt.setString(1, memberVO.getMemPassword());
 			pstmt.setString(2, memberVO.getMemEmail());
@@ -52,7 +49,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 
 		} finally {
-			
+
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -208,7 +205,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 
 		} finally {
-			
+
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -383,7 +380,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 //			List<MemberVO> list = new ArrayList<MemberVO>();
-		
+
 		MemberVO memberVO = null; //// 要給null才可以判斷使用者是否為空，也等於把vo串聯過來
 
 		try {
@@ -415,7 +412,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				memberVO.setMemUpdate(rs.getTimestamp("MEM_UPDATE"));
 
 			}
-			
 
 		} catch (ClassNotFoundException e) {
 
@@ -462,8 +458,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 			rs = pstmt.executeQuery();
 
-			
-
 			while (rs.next()) {
 
 				memberVO = new MemberVO();
@@ -472,7 +466,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				memberVO.setMemPassword(rs.getString("MEM_PASSWORD"));
 
 			}
-			
 
 		} catch (ClassNotFoundException e) {
 

@@ -4,6 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="com.groomer.model.*" %>
+<%@ page import="com.works.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@ cursor: pointer;
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 
-            <a class="navbar-brand" href="index.html">美容服務管理</a>
+            <a class="navbar-brand" href="<%= request.getContextPath() %>/front-end/groomer/groomer_appointment_manage.jsp">美容服務管理</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +89,7 @@ cursor: pointer;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="<%= request.getContextPath() %>/front-end/member/grooming_groomerInfo.jsp" class="nav-link smoothScroll">個人主頁</a>
+                        <a href="<%= request.getContextPath() %>/front-end/member/grooming_groomerInfo.jsp?groomerId=${groVO.groomerId}" class="nav-link smoothScroll">個人主頁</a>
                     </li>
                     <li class="nav-item">
                         <a href="<%= request.getContextPath() %>/front-end/groomer/groomer_infoEdit.jsp" class="nav-link smoothScroll">服務資訊管理</a>
@@ -99,6 +100,9 @@ cursor: pointer;
                     <li class="nav-item">
                         <a href="<%= request.getContextPath() %>/front-end/groomer/groomer_schedule.jsp" class="nav-link smoothScroll">班表</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<%= request.getContextPath() %>/front-end/member/memberpage.jsp" class="nav-link smoothScroll">會員中心</a>
+                    </li>
                 </ul>
 
             </div>
@@ -108,11 +112,11 @@ cursor: pointer;
 	<main>
 <!--------------------------------   groomer 表修正項目：名稱、大頭照、預設服務日、預設服務時間、簡介   ------------------------------------->	
 		<div class="container">
-<jsp:useBean id="groSvc" class="com.groomer.model.GroService"></jsp:useBean>
-<% 
-	GroVO groVO = groSvc.findByPrimaryKey(1);
-	pageContext.setAttribute("groVO", groVO);
-%>
+<%-- <jsp:useBean id="groSvc" class="com.groomer.model.GroService"></jsp:useBean> --%>
+<%-- <%  --%>
+<!-- // 	GroVO groVO = groSvc.findByPrimaryKey(1); -->
+<!-- // 	pageContext.setAttribute("groVO", groVO); -->
+<%-- %> --%>
 
 		<h2>服務項目</h2>
 <!-----------------------------------------------------     svcList start     ---------------------------------------------------------------->		
@@ -224,7 +228,12 @@ cursor: pointer;
 		<!-- -----------------------------------------   show works   -----------------------------------         -->
 		<div class="showWork row">
 			<jsp:useBean id="workSvc" class="com.works.model.WorkService"></jsp:useBean>
-			<c:forEach var="workVO" items="${workSvc.getOneList(groVO.groomerId)}">
+<%
+Integer groomerId = ((GroVO) session.getAttribute("groVO")).getGroomerId();
+List<WorkVO> list = workSvc.getOneList(groomerId);
+pageContext.setAttribute("list", list);
+%>
+			<c:forEach var="workVO" items="${list}">
 				<div class="col-3">
 <!-- 					<button type="button" class="btn card mb-3 mx-2 show-item" style="width: 10rem;"> -->
 <%-- 						<img class="card-img-top show-item" data-id="${workVO.wid}" src="data:image/jpeg; base64, ${workVO.itemBase64 }" alt="Card image cap"> --%>

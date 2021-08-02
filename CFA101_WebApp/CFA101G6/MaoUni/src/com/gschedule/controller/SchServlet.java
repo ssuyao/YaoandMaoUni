@@ -34,10 +34,14 @@ public class SchServlet extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		
+		
 		if("autoInsertData".equals(action)) {
 			SchService schSvc = new SchService();
+			Integer groomerId = new Integer(req.getParameter("groomerId"));
 			try {
-				schSvc.autoInsertData();
+//				schSvc.autoInsertData();
+				schSvc.autoInsertData(groomerId);
+				
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
@@ -86,6 +90,25 @@ public class SchServlet extends HttpServlet {
 				out.flush();
 				out.close();
 			} catch (IOException e) {
+				e.printStackTrace(System.err);
+			}
+		}
+		
+		if("update".equals(action)) {
+			Date date = java.sql.Date.valueOf(req.getParameter("schdate"));
+			Integer groomerId = new Integer(req.getParameter("groomerId"));
+			Integer status = new Integer(req.getParameter("status"));
+			Integer stime = new Integer(req.getParameter("stime"));
+			Integer etime = new Integer(req.getParameter("etime"));
+			SchService schSvc = new SchService();
+			try {
+				String result = schSvc.update(groomerId, date, status, stime, etime);
+				PrintWriter out = res.getWriter();
+				out.write(result);
+				out.flush();
+				out.close();
+				
+			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
 		}

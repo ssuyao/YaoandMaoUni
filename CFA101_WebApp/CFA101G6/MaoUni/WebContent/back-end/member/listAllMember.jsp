@@ -40,64 +40,51 @@
 	background: #e8c497;
 	color: #fff;
 }
-
 .btn:hover {
 	background: #ffe6c7;
 	color: #fff;
 }
-
 .pagination>li.active>a {
 	background: #d6b286;
 	color: #fff;
 }
-
 .pagination>li>a {
 	color: #d6b286;
 }
-
 .pagination>li>a:hover {
 	background: #fff;
 	color: #5c3316;
 }
-
 .col-md-6 .pagination>li>a, .col-md-6 .pagination>li>span {
 	border: 1px solid #d6b286;
 }
-
 .pagination>.active>a:hover {
 	background-color: #e6c195;
 	border: solid 1px #e6c195;
 }
-
 a.btsp {
 	font-size: 35px;
 	color: #e8c497;
 }
-
 a.btsp:hover, a.btsp:active {
 	color: #ffe6c7;
 	text-decoration: none;
 }
-
 p.allitemtitle {
 	color: #fff;
 	font-weight: bold;
 }
-
 input.details {
 	background-color: #bfbfbf;
 	color: #fff;
 }
-
 input.details:hover {
 	background-color: #e8c497;
 }
-
 input.update {
 	background-color: #bfbfbf;
 	color: #fff;
 }
-
 input.update:hover {
 	background-color: #e8c497;
 }
@@ -116,15 +103,15 @@ input.update:hover {
          <div class="menu-wrap">
              <div class="menu-sidebar" style="margin-top:30px;">
                  <ul class="menu">
-                     <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/message/addMessage.jsp">商城客服管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/forumpost/forumPostHomePage.jsp">討論區管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/back-end/groomer/grooming_report.jsp">美容預約檢舉管理</a></li>
+                    <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/message/message_home.jsp">商城客服管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/groomer/grooming_report.jsp">美容預約檢舉管理</a></li>
+	                <li><a href="<%= request.getContextPath() %>/back-end/staff/allStaff.jsp">後台管理</a></li>
                  </ul>
              </div>
          </div>
@@ -149,118 +136,6 @@ input.update:hover {
 							<a class="btsp" href="Item_select_page.jsp">會員資料管理</a>
 						</p>
 						<ul class="nav navbar-nav flex-nowrap ml-auto">
-							<li class="nav-item dropdown no-arrow mx-1"
-								style="margin-top: 10px;">
-								<div class="nav-item dropdown no-arrow">
-									<a class="dropdown-toggle nav-link" data-toggle="dropdown"
-										aria-expanded="false" href="#"><span
-										class="badge badge-danger badge-counter">3+</span><i
-										class="fas fa-bell fa-fw"></i></a>
-									<div
-										class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in">
-										<h6 class="dropdown-header">alerts center</h6>
-										<a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="mr-3">
-												<div class="bg-primary icon-circle">
-													<i class="fas fa-file-alt text-white"></i>
-												</div>
-											</div>
-											<div>
-												<span class="small text-gray-500">December 12, 2019</span>
-												<p>A new monthly report is ready to download!</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="mr-3">
-												<div class="bg-success icon-circle">
-													<i class="fas fa-donate text-white"></i>
-												</div>
-											</div>
-											<div>
-												<span class="small text-gray-500">December 7, 2019</span>
-												<p>$290.29 has been deposited into your account!</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="mr-3">
-												<div class="bg-warning icon-circle">
-													<i class="fas fa-exclamation-triangle text-white"></i>
-												</div>
-											</div>
-											<div>
-												<span class="small text-gray-500">December 2, 2019</span>
-												<p>Spending Alert: We've noticed unusually high spending
-													for your account.</p>
-											</div>
-										</a><a class="text-center dropdown-item small text-gray-500"
-											href="#">Show All Alerts</a>
-									</div>
-								</div>
-							</li>
-							<li class="nav-item dropdown no-arrow mx-1"
-								style="margin-top: 10px">
-								<div class="nav-item dropdown no-arrow" style="margin-top:;">
-									<a class="dropdown-toggle nav-link" data-toggle="dropdown"
-										aria-expanded="false" href="#"><i
-										class="fas fa-envelope fa-fw"></i><span
-										class="badge badge-danger badge-counter">7</span></a>
-									<div
-										class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in">
-										<h6 class="dropdown-header">alerts center</h6>
-										<a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle" src="avatars/avatar4.jpeg">
-												<div class="bg-success status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Hi there! I am wondering if you can help me
-														with a problem I've been having.</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle" src="avatars/avatar2.jpeg">
-												<div class="status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>I have the photos that you ordered last month!</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle" src="avatars/avatar3.jpeg">
-												<div class="bg-warning status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Last month's report looks great, I am very
-														happy with the progress so far, keep up the good work!</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle" src="avatars/avatar5.jpeg">
-												<div class="bg-success status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Am I a good boy? The reason I ask is because
-														someone told me that people say this to all dogs, even if
-														they aren't good...</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-											</div>
-										</a><a class="text-center dropdown-item small text-gray-500"
-											href="#">Show All Alerts</a>
-									</div>
-								</div>
-								<div
-									class="shadow dropdown-list dropdown-menu dropdown-menu-right"
-									aria-labelledby="alertsDropdown"></div>
-							</li>
 							<div class="d-none d-sm-block topbar-divider"></div>
 							<li class="nav-item dropdown no-arrow" style="margin-top: 4px">
 								<div class="nav-item dropdown no-arrow">
@@ -468,20 +343,14 @@ input.update:hover {
 							</div>
 						</div>
 					</div>
-
 				</div>
-
-
 				<script type="text/javascript">
-
 $(document).ready(function(){
-
 $(".memIdenity").each(function(){
 var memIdenity =$(this).text();
 var memI = memIdenity.substr(0,3) + '****' + memIdenity.substr(memIdenity.length-4);
 $(this).texl(memI);
 });
-
 $$(".memPh").each(function(){
 	var memPh=$(this).tetx();
 	if(memPh!='')
@@ -492,24 +361,17 @@ $$(".memPh").each(function(){
 })
 	
 </script>
-				<script
-					src="<%=request.getContextPath()%>/resources/bootstrap/jquery/jquery.min.js"></script>
-				<script
-					src="<%=request.getContextPath()%>/resources/js/jquery_1.12.4.min.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/bootstrap/jquery/jquery.min.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/js/jquery_1.12.4.min.js"></script>
 
-				<script
-					src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 
-				<script
-					src="<%=request.getContextPath()%>/resources/js/fontawesome.js"></script>
-				<script
-					src="<%=request.getContextPath()%>/resources/js/fontawesome.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/js/fontawesome.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/js/fontawesome.js"></script>
 				<!-- 步驟三 -->
 				<!-- 隱藏式菜單_連結-->
 				<!--底下是jsp 裡面所連結打法可以參考一下-->
-				<script
-					src="<%=request.getContextPath()%>/resources/js/hidden_menu3.js"></script>
-				<script
-					src="<%=request.getContextPath()%>/resources/js/hidden_menu4.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/js/hidden_menu3.js"></script>
+				<script src="<%=request.getContextPath()%>/resources/js/hidden_menu4.js"></script>
 </body>
 </html>

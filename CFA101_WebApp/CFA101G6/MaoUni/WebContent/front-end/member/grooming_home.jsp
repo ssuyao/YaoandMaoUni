@@ -224,7 +224,7 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
                         <tbody class="cartbody" style="color:black;">
                         </tbody>
                     </table>
-                    <a href="#" class="btn btn-block btn-primary btn-sm text-white">確認結帳</a>
+                    <a href="<%=request.getContextPath()%>/front-end/shop/order_confirm.jsp" class="btn btn-block btn-primary btn-sm text-white">確認結帳</a>
                 </div>
             </div>
         </div>
@@ -247,7 +247,6 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
 				<nav style="margin-bottom:-15px;margin-left:15px;">
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/home/HomePage.jsp" style="font-size:15px;">首　頁</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/shop/shopping_home.jsp" style="font-size:15px;">有你來買</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/forumPost/forumPost_home.jsp" style="font-size:15px;">有你來講</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/member/grooming_home.jsp" style="font-size:15px;">到府美容</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp" style="font-size:15px;">浪浪找家</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/article/listAllArt_f.jsp" style="font-size:15px;">知識站</a></p>
@@ -345,11 +344,12 @@ pageContext.setAttribute("list", list);
             const header = document.querySelector('header');
             header.classList.toggle('sticky',window.scrollY > 0);
             });
-            
+    
     </script>
     <script>
         const sessionId = "${sessionId}";
     </script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/shopping_cart.js"></script>
 </body>
 </html>

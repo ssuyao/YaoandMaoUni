@@ -6,10 +6,13 @@
 <%@ page import="com.service_list.model.*"%>
 <%@ page import="com.groomer.model.*"%>
 <%@ page import="com.appointment_form.model.*"%>
+<%@ page import="com.pet.model.*"%>
+<%@ page import="com.addressGeo.model.*"%>
 
 <jsp:useBean id="worksSvc" scope="page" class="com.works.model.WorkService"/>
 <jsp:useBean id="svcListSvc" scope="page" class="com.service_list.model.SvcListService"/>
 <jsp:useBean id="groomerSvc" scope="page" class="com.groomer.model.GroService"/>
+<jsp:useBean id="petSvc" scope="page" class="com.pet.model.PetService"/>
 
 <!DOCTYPE html>
 <html>
@@ -31,17 +34,16 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/hero-slider.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl-carousel.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/templatemo-style.css">
-<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/sweetalert2.css"> 
 <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/jquery-ui.css"> 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/header.css">
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/newheader.css"> --%>
+<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/sweetalert2.css"> 
 
 <script src="<%= request.getContextPath() %>/resources/js/fontawesome.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/sweetalert2.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery_1.12.4.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery-ui.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/sweetalert2.js"></script>
 
 
 
@@ -83,6 +85,12 @@ margin: 10px 5px;
     min-height: 45vh;
 }
 
+.popular-item{
+height: 350px;
+}
+
+
+
 
 </style>
 
@@ -109,7 +117,7 @@ margin: 10px 5px;
 	                        <tbody class="cartbody" style="color:black;">
 	                        </tbody>
 	                    </table>
-                    	<a href="#" class="btn btn-block btn-primary btn-sm text-white">確認結帳</a>
+                    	<a href="<%=request.getContextPath()%>/front-end/shop/order_confirm.jsp" class="btn btn-block btn-primary btn-sm text-white">確認結帳</a>
                 	</div>
             	</div>
        	 </div>
@@ -129,7 +137,6 @@ margin: 10px 5px;
 				<nav style="margin-bottom:-15px;margin-left:15px;">
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/home/HomePage.jsp" style="font-size:15px;">首　頁</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/shop/shopping_home.jsp" style="font-size:15px;">有你來買</a></p>
-			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/forumPost/forumPost_home.jsp" style="font-size:15px;">有你來講</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/member/grooming_home.jsp" style="font-size:15px;">到府美容</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp" style="font-size:15px;">浪浪找家</a></p>
 			       <p class="hover-underline-animation pb-0"><a href="<%= request.getContextPath() %>/front-end/article/listAllArt_f.jsp" style="font-size:15px;">知識站</a></p>
@@ -138,7 +145,14 @@ margin: 10px 5px;
 			</div>
 	</header>
 <main>
-
+<% 
+	Map<String, String[]> map = new LinkedHashMap<String, String[]>(); 
+	String groomerId = request.getParameter("groomerId");
+	String[] list = {groomerId};
+	map.put("groomerId", list );
+	GroVO groVO = groomerSvc.getAll(map).get(0);
+	pageContext.setAttribute("groVO", groVO);
+%>    
 
 
   <section class="popular-places" id="popular">
@@ -146,15 +160,15 @@ margin: 10px 5px;
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>Tiere堤柇 寵物SPA</h2>
+                        <h2>${groVO.gname}</h2>
                     </div>
                 </div>
             </div>
             <div class="owl-carousel owl-theme">
- <c:forEach var="workVO" items="${worksSvc.getOneList(1)}">          
+ <c:forEach var="workVO" items="${worksSvc.getOneList(param.groomerId)}">          
                 <div class="item popular-item">
-                    <div class="thumb">
-                        <img src="data:image/jpeg; base64, ${workVO.itemBase64}" alt="作品">
+                    <div class="thumb" style="height: 100%;">
+                        <img src="data:image/jpeg; base64, ${workVO.itemBase64}" alt="作品" style="height: 100%;">
                         <div class="plus-button">
                            <i class="fa fa-heart"></i>
                         </div>
@@ -173,15 +187,6 @@ margin: 10px 5px;
                         <div class="row">
                             <div class="col-md-6 col-md-offset-1">
                                 <div class="left-content">
-                               
-<% 
-	Map<String, String[]> map = new LinkedHashMap<String, String[]>(); 
-	String groomerId = request.getParameter("groomerId");
-	String[] list = {groomerId};
-	map.put("groomerId", list );
-	GroVO groVO = groomerSvc.getAll(map).get(0);
-	pageContext.setAttribute("groVO", groVO);
-%>                                
                                     <p>${groVO.intro}
 <!--                                         Tiere是德文「動物」的意思，在這裡，毛孩兒至上！ -->
 
@@ -202,7 +207,7 @@ margin: 10px 5px;
                                     <ul class="accordion">
                                         <li>
                                             <a style="color: gray;">給汪汪的服務</a>
-<c:forEach var="svcListVO" items="${svcListSvc.getAll(1)}">                                    
+<c:forEach var="svcListVO" items="${svcListSvc.getAll(param.groomerId)}">                                    
                                             <c:if test="${svcListVO.svcPet == '狗'}">
                                             	<p>${svcListVO.svcItem}</p>
                                             </c:if>
@@ -210,7 +215,7 @@ margin: 10px 5px;
                                         </li>
                                         <li>
                                             <a style="color: gray;">給貓貓的服務</a>
-<c:forEach var="svcListVO" items="${svcListSvc.getAll(1)}">                                               
+<c:forEach var="svcListVO" items="${svcListSvc.getAll(param.groomerId)}">                                               
                                             <c:if test="${svcListVO.svcPet == '貓'}">
                                             	<p>${svcListVO.svcItem}</p>
                                             </c:if>
@@ -221,9 +226,9 @@ margin: 10px 5px;
                             </div>
                         </div>
                         <div class="col-md-12 col-md-offset-1">
-                                    <div class="wrapper">
+                                    <div class="wrapper mt-5">
                                         <!-- Modal button -->
-                                        <button id="addtrack" class="modal-btn">加入追蹤</button>
+<!--                                         <button id="addtrack" class="modal-btn">加入追蹤</button> -->
                                         <button id="modBtn" class="modal-btn">立即預約</button>
                                     </div>
                                     <div id="modal" class="modal">
@@ -243,14 +248,15 @@ margin: 10px 5px;
                                                             <div class="col-md-6">
                                                                 <fieldset>
 <!--                                                                 自動代入會員姓名 -->
-        <input name="name" type="text" class="form-control apminput" id="name" placeholder="Your name..."required="">
-        <input type="hidden" name="memId" value="8"> 
-		<input type="hidden" name="groomerId" value="1">
+		<h3 class="apminput">會員姓名：  ${memberVO.memName}</h3>
+<%--         <input name="name" type="text" class="form-control apminput" id="name" value="${memberVO.memName}"> --%>
+        <input type="hidden" name="memId" value="${memberVO.memId}"> 
+		<input type="hidden" name="groomerId" value="${param.groomerId}">
                                                                 </fieldset>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <fieldset>
-        <select class="form-control pid apminput" name="pid">
+        <select class="form-control pid apminput" name="pid">   
 			<option value="1">Cookie</option>
 			<option value="2">NueNue</option>
 		</select>
@@ -289,7 +295,7 @@ margin: 10px 5px;
 <input type="hidden" class="needtime v" value="0">
 <input type="hidden" class="etime apminput" name="etime" value="0">
 <input type="text" class="total apminput" name="total" value="0">
-<input type="text" class="address apminput mb-2" name="address" value="220新北市板橋區萬板路55號" disable>
+<input type="text" class="address apminput mb-2" name="address" value="${memberVO.memAddres}" disable>
 <input type="hidden" name="action" value="addAppointment">	
 
 																</fieldset> 
@@ -379,7 +385,7 @@ margin: 10px 5px;
                             </div>
                         </div>
                         <div class="down-content">
-                            <h4>${apmVO.pid}</h4>
+                            <h4>${petSvc.findByPrimaryKey(apmVO.pid).petName}</h4>
                             <span>${apmVO.apmDate}</span>
                             <p>${apmVO.apmComment}</p>
 
@@ -405,7 +411,7 @@ margin: 10px 5px;
             </div>
 
         </div>
-        <div id="map">
+        <div id="map" style="width:100%;  height: 500px">
             <!-- How to change your own map point
                            1. Go to Google Maps
                            2. Click on your location point
@@ -413,9 +419,9 @@ margin: 10px 5px;
                            4. Copy only URL and paste it within the src="" field below
                     -->
 
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1197183.8373802372!2d-1.9415093691103689!3d6.781986417238027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb96f349e85efd%3A0xb8d1e0b88af1f0f5!2sKumasi+Central+Market!5e0!3m2!1sen!2sth!4v1532967884907"
-                width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+<!--             <iframe -->
+<!--                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1197183.8373802372!2d-1.9415093691103689!3d6.781986417238027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb96f349e85efd%3A0xb8d1e0b88af1f0f5!2sKumasi+Central+Market!5e0!3m2!1sen!2sth!4v1532967884907" -->
+<!--                 width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe> -->
         </div>
 
     </section>
@@ -449,11 +455,39 @@ margin: 10px 5px;
 		
 
 	
-	let receiverId = ${groVO.memId};
-	const sessionId = "${sessionId}";
-		
-	</script>
+
 	
+	
+	// ========================== googleMap ===========================	
+
+	let map;
+	  // 藍色勾勾
+		
+	 function initMap() {
+     	map = new google.maps.Map(document.getElementById('map'), {
+              center: { lat: ${groVO.lat}, lng: ${groVO.lng} },
+              zoom: 13,
+          });
+
+          var cityCircle = new google.maps.Circle({
+              strokeColor: '#f1c40f', // 線條顏色
+              strokeOpacity: 1, // 線條透明度
+              strokeWeight: 1, // 線條粗度
+              fillColor: '#f1c40f', // 圓形裡填滿的顏色
+              fillOpacity: 0.35, // 圓形裡，填滿顏色的透明度
+              map: map,
+              center: { lat: ${groVO.lat}, lng: ${groVO.lng} }, // 中心點
+              radius: ${groVO.grange} * 1000 // 半徑
+          });
+     }
+
+
+		let receiverId = ${groVO.memId};
+		const sessionId = "${sessionId}";
+		let groomerId = "${param.groomerId}";
+
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALjOdTPZMiMWQVlR01yYwLZWHAVuhk6_w&libraries=places&callback=initMap" async defer></script>
     <script src="<%= request.getContextPath() %>/resources/js/shopping_cart.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
     <script src="<%= request.getContextPath() %>/resources/js/datepicker.js"></script>

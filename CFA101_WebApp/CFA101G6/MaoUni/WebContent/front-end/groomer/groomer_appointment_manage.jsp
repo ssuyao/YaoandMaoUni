@@ -108,7 +108,7 @@ margin-top: 30px;
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 
-            <a class="navbar-brand" href="index.html">美容服務管理</a>
+            <a class="navbar-brand" href="<%= request.getContextPath() %>/front-end/groomer/groomer_appointment_manage.jsp">美容服務管理</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +118,7 @@ margin-top: 30px;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="<%= request.getContextPath() %>/front-end/member/grooming_groomerInfo.jsp" class="nav-link smoothScroll">個人主頁</a>
+                        <a href="<%= request.getContextPath() %>/front-end/member/grooming_groomerInfo.jsp?groomerId=${groVO.groomerId}" class="nav-link smoothScroll">個人主頁</a>
                     </li>
 					<li class="nav-item">
                         <a href="<%= request.getContextPath() %>/front-end/groomer/groomer_infoEdit.jsp" class="nav-link smoothScroll">服務資訊管理</a>
@@ -129,6 +129,9 @@ margin-top: 30px;
 
                     <li class="nav-item">
                         <a href="<%= request.getContextPath() %>/front-end/groomer/groomer_schedule.jsp" class="nav-link smoothScroll">班表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<%= request.getContextPath() %>/front-end/member/memberpage.jsp" class="nav-link smoothScroll">會員中心</a>
                     </li>
                 </ul>
 
@@ -189,7 +192,7 @@ margin-top: 30px;
 							<option value="4">取消</option>
 						</select>
 					</div>
-					<input class="action" type="hidden" name="groomerId" value="1">
+					<input class="action" type="hidden" name="groomerId" value="${groVO.groomerId}">
 					<input class="action" type="hidden" name="action" value="getAll">
 					<div class="col-md-1 my-1">
 						<i class=" fas fa-search search mt-4 fa-2x"></i>
@@ -248,7 +251,10 @@ margin-top: 30px;
 	</main>
 	<footer></footer>
 	
-	
+<script>
+let groomerId = "${groVO.groomerId}";
+let grange = "${groVO.grange}";
+</script>	
 	
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALjOdTPZMiMWQVlR01yYwLZWHAVuhk6_w&libraries=places&callback=initMap" async defer></script>

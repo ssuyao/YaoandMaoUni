@@ -253,9 +253,8 @@ public class ItemServlet extends HttpServlet {
 				}
 				
 				
-				String itemContent = req.getParameter("itemContent").trim();
+				String itemContent = req.getParameter("itemContent");
 				System.out.print(itemContent);
-				String itemContentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,255}$";
 				if (itemContent == null || itemContent.trim().length() == 0) {
 					errorMsgs.add("商品內容請勿空白");
 				} if (!errorMsgs.isEmpty()) {
@@ -415,7 +414,6 @@ public class ItemServlet extends HttpServlet {
 				
 				
 				String itemContent = req.getParameter("itemContent").trim();
-				String itemContentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,255}$";
 				if (itemContent == null || itemContent.trim().length() == 0) {
 					errorMsgs.add("商品內容請勿空白");
 	            } if (!errorMsgs.isEmpty()) {
