@@ -229,6 +229,16 @@
     <url-pattern>/buy/obuy.do</url-pattern>
   </servlet-mapping>
   
+       <servlet>
+    <servlet-name>CdServlet</servlet-name>
+    <servlet-class>com.cd.controller.CdServlet</servlet-class>
+  	</servlet> 
+  
+    <servlet-mapping>
+    <servlet-name>CdServlet</servlet-name>
+    <url-pattern>/cd/cd.do</url-pattern>
+  </servlet-mapping>
+  
   
        <servlet>
     <servlet-name>VarietyServlet</servlet-name>
@@ -260,9 +270,9 @@
     <url-pattern>/check/check.do</url-pattern>
   </servlet-mapping>   
   
-      <session-config>
-        <session-timeout>-1</session-timeout>
-    </session-config>
+	<session-config>
+	<session-timeout>-1</session-timeout>
+	</session-config>
 
 	<!-- ============================================================== -->
 
