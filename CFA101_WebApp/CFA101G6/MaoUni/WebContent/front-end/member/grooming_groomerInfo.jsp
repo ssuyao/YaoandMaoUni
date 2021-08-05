@@ -8,6 +8,7 @@
 <%@ page import="com.appointment_form.model.*"%>
 <%@ page import="com.pet.model.*"%>
 <%@ page import="com.addressGeo.model.*"%>
+<%@ page import="com.member.model.*"%>
 
 <jsp:useBean id="worksSvc" scope="page" class="com.works.model.WorkService"/>
 <jsp:useBean id="svcListSvc" scope="page" class="com.service_list.model.SvcListService"/>
@@ -55,43 +56,32 @@
     border-top: 1px solid #dee2e6;
     margin: 5px 0px;
 }
-
 /* input[type=checkbox], input[type=radio] { */
 /*     box-sizing: border-box; */
 /*     padding: 0; */
 /* } */
-
 .modal-content .left-content input {
     line-height: 30px;
     height: 20px;
     margin-bottom: 0px;
 }
-
 td, tr{
 font-size: 2px;
 color: gray;
 text-align: center;
 }
-
 th{
 text-align: center;
 }
-
 .apminput{
 margin: 10px 5px;
 }
-
 .shopbody {
     min-height: 45vh;
 }
-
 .popular-item{
 height: 350px;
 }
-
-
-
-
 </style>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -250,15 +240,26 @@ height: 350px;
 <!--                                                                 自動代入會員姓名 -->
 		<h3 class="apminput">會員姓名：  ${memberVO.memName}</h3>
 <%--         <input name="name" type="text" class="form-control apminput" id="name" value="${memberVO.memName}"> --%>
-        <input type="hidden" name="memId" value="${memberVO.memId}"> 
+        <input type="hidden" id="memId" name="memId" value="${memberVO.memId}"> 
 		<input type="hidden" name="groomerId" value="${param.groomerId}">
                                                                 </fieldset>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <fieldset>
-        <select class="form-control pid apminput" name="pid">   
-			<option value="1">Cookie</option>
-			<option value="2">NueNue</option>
+                                                                
+ <%
+	Integer memId = ((MemberVO) session.getAttribute("memberVO")).getMemId();
+  	List<PetVO> petVOList = petSvc.findByMemId(memId);
+ 	pageContext.setAttribute("petVOList", petVOList);
+ %>                                                               
+                                                                
+                                                                
+                                                                
+                                                                
+        <select class="form-control pid apminput" name="pid">  
+       <c:forEach var="petVO" items="${petVOList}">
+			<option value="${petVO.petId}">${petVO.petName}</option>
+		</c:forEach> 
 		</select>
                                                                 </fieldset>
                                                             </div>
@@ -320,17 +321,17 @@ height: 350px;
                                                     <div class="right-content">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <div class="content">
-                                                                    <div class="section-heading">
-                                                                        <span>毛孩資料</span>
-                                                                        <h2>妞妞</h2>
-                                                                    </div>
-                                                                    <ul>
-                                                                   		<li>馬爾濟斯</li>
-                                                                        <li>10歲</li>
-                                                                        <li>妹妹</li>
-                                                                        <li>心臟病</li>
-                                                                    </ul>
+                                                                <div class="content petinfomation">
+<!--                                                                     <div class="section-heading"> -->
+<!--                                                                         <span id="petdetail">毛孩資料</span> -->
+<!--                                                                         <h2>妞妞</h2> -->
+<!--                                                                     </div> -->
+<!--                                                                     <ul> -->
+<!--                                                                    		<li>馬爾濟斯</li> -->
+<!--                                                                         <li>10歲</li> -->
+<!--                                                                         <li>妹妹</li> -->
+<!--                                                                         <li>心臟病</li> -->
+<!--                                                                     </ul> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -437,11 +438,9 @@ height: 350px;
 		// 此處是縮放導覽列的動態效果，這段請一定要抓到，不然它不會動
 		//滑鼠滾動(scroll)就開始觸發
 		window.addEventListener("scroll", function() {
-
 			const header = document.querySelector('header');
 			header.classList.toggle('sticky', window.scrollY > 0);
 		});
-
 		$( ".apmDate" ).datepicker({
 			minDate: -0,
 			beforeShowDay: function(date){
@@ -453,22 +452,36 @@ height: 350px;
 			  dateFormat: "yy-mm-dd"
 		  });
 		
-
 	
-
 	
 	
 	// ========================== googleMap ===========================	
-
 	let map;
 	  // 藍色勾勾
 		
 	 function initMap() {
+		// 藍色勾勾
+        svgMarker = {
+            path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+            fillColor: "blue",
+            fillOpacity: 0.6,
+            strokeWeight: 0,
+            rotation: 0,
+            scale: 2,
+            anchor: new google.maps.Point(15, 30),
+        };  
+		  
+		  
      	map = new google.maps.Map(document.getElementById('map'), {
               center: { lat: ${groVO.lat}, lng: ${groVO.lng} },
               zoom: 13,
           });
-
+     	
+     	let marker = new google.maps.Marker({
+            position: { lat: ${groVO.lat}, lng: ${groVO.lng} },
+            icon: svgMarker,
+            map: map
+          });
           var cityCircle = new google.maps.Circle({
               strokeColor: '#f1c40f', // 線條顏色
               strokeOpacity: 1, // 線條透明度
@@ -480,12 +493,9 @@ height: 350px;
               radius: ${groVO.grange} * 1000 // 半徑
           });
      }
-
-
 		let receiverId = ${groVO.memId};
 		const sessionId = "${sessionId}";
 		let groomerId = "${param.groomerId}";
-
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALjOdTPZMiMWQVlR01yYwLZWHAVuhk6_w&libraries=places&callback=initMap" async defer></script>
     <script src="<%= request.getContextPath() %>/resources/js/shopping_cart.js"></script>

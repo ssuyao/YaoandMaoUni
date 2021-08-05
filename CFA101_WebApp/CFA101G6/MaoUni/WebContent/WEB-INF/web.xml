@@ -209,14 +209,22 @@
   </servlet-mapping>
  
 	<filter>
-		<filter-name>loginFilter</filter-name>
-		<filter-class>com.Filter.loginFilter</filter-class>
+	<filter-name>loginFilter</filter-name>
+	<filter-class>com.Filter.loginFilter</filter-class>
 	</filter> 
  	<filter-mapping>
  	<filter-name>loginFilter</filter-name>
  	<url-pattern>/front-end/member/memberpage.jsp</url-pattern>
  	
  	</filter-mapping>
+
+ 	<filter-mapping>
+ 	<filter-name>loginFilter</filter-name>
+ 	<url-pattern>/front-end/shop/order_confirm.jsp</url-pattern>
+ 	
+ 	</filter-mapping>
+
+
 
   
      <servlet>
@@ -229,15 +237,15 @@
     <url-pattern>/buy/obuy.do</url-pattern>
   </servlet-mapping>
   
-       <servlet>
-    <servlet-name>CdServlet</servlet-name>
-    <servlet-class>com.cd.controller.CdServlet</servlet-class>
-  	</servlet> 
+<!--        <servlet> -->
+<!--     <servlet-name>CdServlet</servlet-name> -->
+<!--     <servlet-class>com.cd.controller.CdServlet</servlet-class> -->
+<!--   	</servlet>  -->
   
-    <servlet-mapping>
-    <servlet-name>CdServlet</servlet-name>
-    <url-pattern>/cd/cd.do</url-pattern>
-  </servlet-mapping>
+<!--     <servlet-mapping> -->
+<!--     <servlet-name>CdServlet</servlet-name> -->
+<!--     <url-pattern>/cd/cd.do</url-pattern> -->
+<!--   </servlet-mapping> -->
   
   
        <servlet>

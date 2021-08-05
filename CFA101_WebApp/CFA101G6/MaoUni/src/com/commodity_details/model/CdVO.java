@@ -4,6 +4,7 @@ public class CdVO implements java.io.Serializable{
 	
 	private Integer cdoId;//商品訂單ID
 	private Integer cdItemId;//商品ID
+	private String cdItemName;//商品ID
 	private Integer cdAmount;//商品數量
 	private Integer cdMoney;//商品金額
 	
@@ -32,4 +33,11 @@ public class CdVO implements java.io.Serializable{
 		this.cdMoney = cdMoney;
 	}
 
+	public String getCdItemName() {
+		return cdItemName;
+	}
+	public void setCdItemName(String cdItemName) {
+		this.cdItemName = cdItemName;
+	}
+	
 }
