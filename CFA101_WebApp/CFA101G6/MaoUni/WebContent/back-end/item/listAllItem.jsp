@@ -188,7 +188,7 @@
                                 	<span class="backperson" style="font-size:15px;font-weight:700;margin-right:5px;">後台人員</span>
                                 	<img class="border rounded-circle img-profile" style="widht:40px;height:40px;margin-top:-5px;" src="<%=request.getContextPath()%>/resources/images/items/MaoUniICON.png"></a>
                                     <div class="dropdown-menu dropdown-menu-right animated--grow-in">
-                                    	<a class="dropdown-item" href="#" style="font-weight:700;color:#646464;">Logout</a>
+                                    	<a class="dropdown-item" href="<%=request.getContextPath()%>/member/member.do?action=OutUser" style="font-weight:700;color:#646464;">Logout</a>
                                     </div>
 	                   			</div>
 	                    	</li>

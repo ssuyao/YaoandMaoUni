@@ -127,7 +127,7 @@ public class StaffServlet extends HttpServlet {
 				} else if (!passwordReg.trim().matches(nameReg)) {
 					errorMsgs.add("請輸入正確密碼");
 				}
-				
+
 				String username = req.getParameter("username");
 
 				System.out.println(username);
@@ -139,7 +139,6 @@ public class StaffServlet extends HttpServlet {
 				} else if (!usernameReg.trim().matches(usernameReg)) {
 					errorMsgs.add("請輸入正確密碼");
 				}
-				
 
 				StaffVO staffVO = new StaffVO();
 				staffVO.setId(id);
@@ -153,7 +152,7 @@ public class StaffServlet extends HttpServlet {
 				staffVO.setUsername(username);
 
 				StaffService StaffSvc = new StaffService();
-				StaffSvc.addStaff(id, status, name, age, edu, add, cont, tel, password,username);
+				StaffSvc.addStaff(id, status, name, age, edu, add, cont, tel, password, username);
 				String url = "/back-end/staff/allStaff.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -312,10 +311,10 @@ public class StaffServlet extends HttpServlet {
 					errorMsgs.add("請輸入完整且正確");
 				}
 				String tel = req.getParameter("tel");
-				
+
 				String password = req.getParameter("password");
 				System.out.println(password);
-				String passwordReg ="^[{\u4e00-\u9fa5)(a-zA-Z0-9_)] {2,10}$";
+				String passwordReg = "^[{\u4e00-\u9fa5)(a-zA-Z0-9_)] {2,10}$";
 				if (password == null || password.trim().length() == 0) {
 					errorMsgs.add("請輸入正確");
 				} else if (!passwordReg.trim().matches(nameReg)) {
@@ -323,13 +322,12 @@ public class StaffServlet extends HttpServlet {
 				}
 				String username = req.getParameter("username");
 				System.out.println(username);
-				String usernameReg ="^[{\u4e00-\u9fa5)(a-zA-Z0-9_)] {2,10}$";
+				String usernameReg = "^[{\u4e00-\u9fa5)(a-zA-Z0-9_)] {2,10}$";
 				if (username == null || username.trim().length() == 0) {
 					errorMsgs.add("請輸入正確");
 				} else if (!usernameReg.trim().matches(usernameReg)) {
 					errorMsgs.add("請輸入正確信箱格式");
 				}
-				
 
 				StaffVO staffVO = new StaffVO();
 				staffVO.setId(id);
@@ -344,7 +342,7 @@ public class StaffServlet extends HttpServlet {
 				staffVO.setUsername(username);
 
 				StaffService StaffSvc = new StaffService();
-				StaffSvc.updateStaff(id, name, status, add, age, cont, edu, tel, password,username);
+				StaffSvc.updateStaff(id, name, status, add, age, cont, edu, tel, password, username);
 				String url = "/back-end/staff/allStaff.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -374,56 +372,72 @@ public class StaffServlet extends HttpServlet {
 			}
 
 		}
-		if("login".equals(action)) {
+		if ("login".equals(action)) {
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
-			req.setAttribute("errorMsgs", errorMsgs);			
+			req.setAttribute("errorMsgs", errorMsgs);
 			String username = req.getParameter("username");
-					String password = req.getParameter("password");
-					String usernameReg = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-					String passwordReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-					
-					if(username == null || username.trim().isEmpty()) {
-						
-						errorMsgs.put("username", "帳號請勿空白");
-						req.setAttribute(username, "帳號錯誤");
-						String url = "/back-end/staff/select.jsp";
-						RequestDispatcher failureView = req.getRequestDispatcher(url);
-						failureView.forward(req, res);						
-					}else if(!username.trim().matches(usernameReg)) {
-						errorMsgs.put("username", "請輸入有效的帳號");
-						String url = "/back-end/staff/select.jsp";
-						RequestDispatcher failureView = req.getRequestDispatcher(url);
-						failureView.forward(req, res);
-					}
-					
-					if(password == null || password.trim().isEmpty()) {
-						errorMsgs.put("password", "密碼請勿空白");
-						String url = "/back-end/staff/select.jsp";
-						RequestDispatcher failureView = req.getRequestDispatcher(url);
-						failureView.forward(req, res);
-					}else if(!password.trim().matches(passwordReg)) {
-						errorMsgs.put("password", "密碼長度限制6-20");
-						String url = "/back-end/staff/select.jsp";
-						RequestDispatcher failureView = req.getRequestDispatcher(url);
-						failureView.forward(req, res);
-					}
-					if(!errorMsgs.isEmpty()) {
-						req.getSession().setAttribute(username, password);
-						req.getRequestDispatcher("/back-end/staff/select.jsp").forward(req, res);
-						HttpSession session =req.getSession();
-						session.setAttribute(username, password);
-									
-					}
-					StaffService staffSvc = new StaffService();
-					StaffVO staffVO = staffSvc.findByMGnameAndPassword(username, password);
-					String url = "/back-end/staff/backImage.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);
-					successView.forward(req, res);
-					HttpSession session =req.getSession();
-					session.setAttribute(username, password);
+			String password = req.getParameter("password");
+			String usernameReg = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+			String passwordReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+
+			if (username == null || username.trim().isEmpty()) {
+
+				errorMsgs.put("username", "帳號請勿空白");
+				req.setAttribute(username, "帳號錯誤");
+				String url = "/back-end/staff/select.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+			} else if (!username.trim().matches(usernameReg)) {
+				errorMsgs.put("username", "請輸入有效的帳號");
+				String url = "/back-end/staff/select.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+			}
+
+			if (password == null || password.trim().isEmpty()) {
+				errorMsgs.put("password", "密碼請勿空白");
+				String url = "/back-end/staff/select.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+			} else if (!password.trim().matches(passwordReg)) {
+				errorMsgs.put("password", "密碼長度限制6-20");
+				String url = "/back-end/staff/select.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+			}
+			if (!errorMsgs.isEmpty()) {
+				req.getSession().setAttribute(username, password);
+				req.getRequestDispatcher("/back-end/staff/select.jsp").forward(req, res);
+				HttpSession session = req.getSession();
+				session.setAttribute(username, password);
+
+			}
+			StaffService staffSvc = new StaffService();
+			StaffVO staffVO = staffSvc.findByMGnameAndPassword(username, password);
+			String url = "/back-end/staff/backImage.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			HttpSession session = req.getSession();
+			session.setAttribute(username, password);
+			session.setAttribute("staffVO", staffVO);
+
 		}
-					
-	
+
+		if ("OutUser".equals(action)) {
+
+//		req.getSession().invalidate();
+//		HttpSession session = req.getSession();
+//		String mem = (String)session.getAttribute("memberVO"); 
+////		HttpSession session = req.getSession();
+//		session.removeAttribute(mem);
+			HttpSession session = req.getSession();
+			session.removeAttribute("staffVO");
+			res.sendRedirect(req.getContextPath() + "/front-end/home/adminlogin.jsp");
+
+			// login的session存了甚麼就移除甚麼
+			// session.removeAttribute();用於清空指定屬性的session，它的,session還是原來的session
+			// session.invalidate();直接清空當前session的所有相關資訊，就摧毀
+		}
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

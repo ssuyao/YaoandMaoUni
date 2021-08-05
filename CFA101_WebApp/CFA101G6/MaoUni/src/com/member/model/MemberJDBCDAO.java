@@ -175,7 +175,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	}
 
 	public void update(MemberVO memberVo) {
- System.out.println("所以");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -184,16 +183,34 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-
+			System.out.println("安安安安安安");
 			pstmt.setString(1, memberVo.getMemName());
+			System.out.println(memberVo.getMemName());
+			
+			
 			pstmt.setString(2, memberVo.getMemEmail());
+			System.out.println(memberVo.getMemEmail());
+			
 			pstmt.setString(3, memberVo.getMemIdenity());
+			System.out.println(memberVo.getMemIdenity());
+			
 			pstmt.setString(4, memberVo.getMemGender());
+			System.out.println(memberVo.getMemGender());
+			
 			pstmt.setInt(5, memberVo.getMemPh());
+			System.out.println(memberVo.getMemPh());
+			
 			pstmt.setString(6, memberVo.getMemAddres());
+			System.out.println(memberVo.getMemAddres());
+			
 			pstmt.setDate(7, memberVo.getMemBirthday());
+			System.out.println(memberVo.getMemBirthday());
+			
 			pstmt.setInt(8, memberVo.getMemId());
-			pstmt.executeUpdate();
+			System.out.println(memberVo.getMemId());
+			
+			System.out.println("ㄏㄏㄏㄏ"  + pstmt.executeUpdate());
+			
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 

@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.pet.model.*"%>
 
-<%
-  PetVO petVO = (PetVO) request.getAttribute("petVO"); 
-%>
 
 <!DOCTYPE html>
 <html>
@@ -103,7 +100,7 @@ margin-bottom:10px;
 <table class="pettable">
 
 	<div>
-		<td>毛孩名字:<input type="text" name="petName" size="" value="${param.petName}" required/>
+		<td>毛孩名字:<input type="text" name="petName" size="" value="" required/>
 	</td></div>
 	
 		<div>
@@ -151,7 +148,7 @@ margin-bottom:10px;
 	
 		<div>
 		<td>年齡:
-		<input type="text" name="petAge" size="3" value="${param.petAge}" required/>
+		<input type="text" name="petAge" size="3" value="" required/>
 		</td></div>
 
 		<div>
