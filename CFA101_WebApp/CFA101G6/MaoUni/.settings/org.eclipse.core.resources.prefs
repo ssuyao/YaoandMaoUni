@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/back-end/adopt/add_adopt.jsp=UTF-8
 encoding//WebContent/front-end/member/obuypage.jsp=UTF-8
 encoding//WebContent/front-end/member/updatepassword.jsp=UTF-8
 encoding//src/com/obuy/controller/ObuyServlet.java=UTF-8
