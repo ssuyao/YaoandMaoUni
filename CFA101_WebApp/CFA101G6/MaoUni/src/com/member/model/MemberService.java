@@ -3,7 +3,9 @@ package com.member.model;
 import java.util.List;
 
 import com.util.MailService;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.mail.internet.MimeMessage.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -81,7 +83,7 @@ public class MemberService {
 
 		messageText.append("嗨，親愛的毛爸媽，歡迎您加入MaoUni！") ;
 //		message.setContent("<h1>嗨，親愛的毛爸媽，歡迎您加入MaoUni</h1><br><a href=\"http://localhost:8081/MaoUni/front-end/home/login.jsp">請點擊連結進行登入</a>",\"text/html;charset=UTF-8\");
-		
+//		message.setContent("請按下方超連結以完成E-mail驗證<br/><a href=\"http://xxx.com.tw/servlet?vid=123456789\">E-mail驗證</a>", "text/html; charset=UTF-8");
 		mailSvc.setMessageText(messageText.toString());
 		mailSvc.start();
 
