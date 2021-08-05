@@ -308,8 +308,6 @@ margin-top: -50px;
 								<c:if test="${obuyVO.oSurvive == '0'}">等待處理</c:if>
 								<c:if test="${obuyVO.oSurvive == '1'}">完成訂單</c:if>
 
-								
-								
 								<td style="width: 91.5px;text-align: center;font-size:3px;">${obuyVO.obuyOther}</td>
 								<td><i class="far fa-address-card btn-primary" data-toggle="modal" data-target="#e${obuyVO.obuyId}"></i></td>
 							<!-- ---------------------跳出視窗-->

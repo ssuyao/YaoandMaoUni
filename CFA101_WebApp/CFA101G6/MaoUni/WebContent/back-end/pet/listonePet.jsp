@@ -178,14 +178,14 @@
 				</button>
 			</div>
 		</form>	
-		<form method="post" ACTION="<%=request.getContextPath()%>/pet/pet.do">
-				<input type="hidden" name="petId value="${petVO.petId}"> 
-				<input class="action" type="hidden" name="action" value="GET_ALL_STMT">
-				<button type="submit" class="btn btn-primary getList ml-4 my-1">
-					ALL
-				</button>
-			</div>
-		</form>		    	
+<%-- 		<form method="post" ACTION="<%=request.getContextPath()%>/pet/pet.do"> --%>
+<%-- 				<input type="hidden" name="petId value="${petVO.petId}">  --%>
+<!-- 				<input class="action" type="hidden" name="action" value="GET_ALL_STMT"> -->
+<!-- 				<button type="submit" class="btn btn-primary getList ml-4 my-1"> -->
+<!-- 					ALL -->
+<!-- 				</button> -->
+<!-- 			</div> -->
+<!-- 		</form>		    	 -->
 			    	
 			    
  <table class="table my-0" id="dataTable">
