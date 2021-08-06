@@ -135,7 +135,7 @@ public class MemberServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			System.out.println("讓我上git好ㄇ");
 			try {
 
 				

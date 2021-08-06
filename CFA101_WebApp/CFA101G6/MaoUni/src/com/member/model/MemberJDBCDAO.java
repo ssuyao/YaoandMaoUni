@@ -177,7 +177,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	public void update(MemberVO memberVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		System.out.println("讓我上git好ㄇ");
 		try {
 
 			Class.forName(driver);
